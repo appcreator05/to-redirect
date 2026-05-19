@@ -103,6 +103,7 @@
     transform: translate(-50%, -50%) rotate(90deg); 
     background: #000;
     overflow: hidden;
+    transition: all 0.3s ease; /* স্মুথ ট্রানজিশনের জন্য */
 }
 
 .videoBox video {
@@ -136,8 +137,8 @@
 }
 
 .fullscreen-btn {
-    left: 6px;
-    bottom: 4px;
+    left: 10px;
+    bottom: 10px;
 }
 
 .fullscreen-btn-2 {
@@ -181,7 +182,7 @@
 <header>
   <div class="left">
     <span class="menu" id="menuBtn">☰</span>
-    <a href="https://appcreator05.github.io/to-redirect/" style="text-decoration:none"><h1>Movie App</h1></a>
+    <a href="/" style="text-decoration:none"><h1>Movie App</h1></a>
   </div>
   <div class="right">
     <kajal class="share-btn" id="shareBtn"><i class="fa fa-share-alt" style="font-size:22px;color:red"></i></kajal>
@@ -366,13 +367,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- কাস্টম ফুলস্ক্রিন বাটন লজিক ---
+    // --- কাস্টম ফুলস্ক্রিন বাটন লজিক (সংশোধিত ওরিয়েন্টেশন সহ) ---
     const customFullscreenBtn = document.getElementById("customFullscreenBtn");
     const customFullscreenBtn2 = document.getElementById("customFullscreenBtn2");
 
     function toggleFullscreen() {
         const videoContainer = document.getElementById("videoContainer");
+        const videoBox = document.querySelector(".videoBox");
+
         if (!document.fullscreenElement) {
+            // ফুলস্ক্রিন মোড চালু করা
             if (videoContainer.requestFullscreen) {
                 videoContainer.requestFullscreen();
             } else if (videoContainer.webkitRequestFullscreen) {
@@ -380,10 +384,22 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (videoContainer.msRequestFullscreen) {
                 videoContainer.msRequestFullscreen();
             }
+
+            // ফুলস্ক্রিনে ডাবল-রোটেশন এড়ানোর জন্য CSS রিসেট করা
+            if (videoBox) {
+                videoBox.style.transform = "none";
+                videoBox.style.width = "100%";
+                videoBox.style.height = "100%";
+                videoBox.style.top = "0";
+                videoBox.style.left = "0";
+            }
+
+            // ওরিয়েন্টেশন ল্যান্ডস্কেপ লক করা
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock("landscape").catch(err => console.log("Orientation lock error: ", err));
             }
         } else {
+            // ফুলস্ক্রিন মোড থেকে বের হওয়া
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.webkitExitFullscreen) {
@@ -393,6 +409,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
+
+    // ফুলস্ক্রিন চেঞ্জ ট্র্যাকিং ইভেন্ট (যাতে ব্যাক বাটন চাপলেও রিসেট হয়)
+    document.addEventListener("fullscreenchange", () => {
+        const videoBox = document.querySelector(".videoBox");
+        if (!document.fullscreenElement && videoBox) {
+            // ভিডিও আবার আগের সাধারণ মোডে ফিরিয়ে আনা (CSS রোটেশন পুনরায় চালু)
+            videoBox.style.transform = "translate(-50%, -50%) rotate(90deg)";
+            videoBox.style.width = "100vh";
+            videoBox.style.height = "100vw";
+            videoBox.style.top = "50%";
+            videoBox.style.left = "50%";
+            
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+        }
+    });
 
     if (customFullscreenBtn) {
         customFullscreenBtn.addEventListener("click", toggleFullscreen);

@@ -136,8 +136,8 @@
 }
 
 .fullscreen-btn {
-    left: 10px;
-    bottom: 10px;
+    left: 6px;
+    bottom: 4px;
 }
 
 .fullscreen-btn-2 {
@@ -317,20 +317,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // --- ২. মেইন গ্যালারি এবং কন্টিনিউ ওয়াচিং কার্ড ক্লিক লজিক ---
-    // ইমেজে বা কার্ডে যেখানেই ক্লিক হোক, সঠিকভাবে আইডি ডিটেক্ট করবে
+    // --- ২. মেইন গ্যালারি এবং কন্টিনিউ ওয়াচিং কার্ড ক্লিক লজিক ---
     document.addEventListener("click", (e) => {
         const card = e.target.closest(".card, .watch-card");
         if (!card) return;
 
-        // যদি <a> ট্যাগে ক্লিক হয় তবে ব্রাউজারের ডিফল্ট রিডাইরেক্ট বন্ধ করবে
         if (e.target.closest("a")) {
             e.preventDefault();
         }
 
         const img = card.querySelector("img");
         if (img) {
-            // প্রথমে ইমেজের data-id চেক করবে, না থাকলে লিঙ্কের আইডি খোঁজার চেষ্টা করবে
             let videoId = img.getAttribute("data-id");
             
             if (!videoId) {
@@ -345,7 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (videoId) {
                 playVideo(videoId);
 
-                // কন্টিনিউ ওয়াচিং ডাটা সেভ প্রসেস
                 const movieImage = img.dataset.src || img.src;
                 const movie = { 
                     title: card.dataset.title || card.querySelector("h3, h4, b")?.innerText, 
@@ -358,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- ক্লোজ প্লেয়ার বাটন লজিক ---
+    // --- ক্লোজ প্লেয়ার বাটন লজিক ---
     if(closeModal) {
         closeModal.addEventListener("click", () => {
             if (document.fullscreenElement) document.exitFullscreen();
@@ -368,6 +364,41 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = ""; 
             screen.orientation?.unlock();
         });
+    }
+
+    // --- কাস্টম ফুলস্ক্রিন বাটন লজিক ---
+    const customFullscreenBtn = document.getElementById("customFullscreenBtn");
+    const customFullscreenBtn2 = document.getElementById("customFullscreenBtn2");
+
+    function toggleFullscreen() {
+        const videoContainer = document.getElementById("videoContainer");
+        if (!document.fullscreenElement) {
+            if (videoContainer.requestFullscreen) {
+                videoContainer.requestFullscreen();
+            } else if (videoContainer.webkitRequestFullscreen) {
+                videoContainer.webkitRequestFullscreen();
+            } else if (videoContainer.msRequestFullscreen) {
+                videoContainer.msRequestFullscreen();
+            }
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(err => console.log("Orientation lock error: ", err));
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    if (customFullscreenBtn) {
+        customFullscreenBtn.addEventListener("click", toggleFullscreen);
+    }
+    if (customFullscreenBtn2) {
+        customFullscreenBtn2.addEventListener("click", toggleFullscreen);
     }
 
     // --- স্লাইডার অটো স্ক্রোল স্ক্রিপ্ট ---

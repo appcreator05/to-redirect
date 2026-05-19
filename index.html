@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie App Offline</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/head1.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/head2.css"/>
+
+</head>
+<body>
+
+<header>
+  <div class="left">
+    <span class="menu" id="menuBtn">☰</span>
+ <a href="go:love" style="text-decoration:none"><h1>Movie App</h1></a>
+
+
+  </div>
+  <div class="right">
+  <kajal class="share-btn" id="shareBtn"><i class="fa fa-share-alt" style="font-size:22px;color:red"></i></kajal>
+    <span id="darkToggle" class="icon-btn">🌙</span>
+    <span id="searchIcon" class="icon-btn">🔍</span>
+  </div>
+  <div class="searchBox" id="searchBoxContainer">
+    <input type="text" id="searchBox" placeholder="Search your favorite movie...">
+    <span id="searchClose" class="icon-btn">×</span>
+  </div>
+</header>
+
+<div class="sideMenu" id="sideMenu">
+
+  <ul id="categoryList">
+    <li><a href="/">Home</a></li>
+    <li>Bollywood Hindi Movie</li>
+    <li>South Indian Hindi</li>
+    <li>Bengali Movie</li>
+    <li>Bhakti Movie</li>
+    <li>Punjabi Movie</li>
+    <li>Bhojpuri</li>
+    <li>Tagalog Movie</li>
+    <li>Bollywood 90s Movie</li>
+    <li>Bollywood Classic Movie</li>
+    <li>Cartoon Movie</li>
+    <li>Hollywood English Dubbed</li>
+    <li>Hollywood Hindi Dubbed</li>
+    <li>Horror Hindi Dubbed</li>
+    <li>Korean Hindi Dubbed</li>
+    <li>Live TV</li>
+    <li>Marathi Movie</li>
+	<li>Web Series</li>
+    <li class="dropdown">
+  <span class="dropBtn">🎵 Music Section</span>
+
+  <ul class="dropMenu">
+    <li>Mp3 Songs</li>
+    <li>Albums</li>
+    <li>Bengali Mp3</li>
+    <li>Bhakti Sangeet</li>
+    <li>Punjabi Movie</li>
+    <li>South Songs</li>
+    <li>Bhojpuri Songs</li>
+    <li>Hindi 80s Songs</li>
+    <li>Hindi 90s Songs</li>
+    <li>Hindi Classic Songs</li>
+    <li>Hindi Songs</li>
+    <li>Virtual-Music</li>
+  </ul>
+</li>
+
+  </ul>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Continue Watching Section -->
+<section id="continueSection">
+  <h2 class="continue-title">Continue Watching...</h2>
+  <div class="continue-watch" id="continueWatch"></div>
+<div class="poster-box">
+  <div class="poster-track" id="posterTrack">
+      <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" />
+      <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" />
+      <img src="https://i.ytimg.com/vi/1kVK0MZlbI4/maxresdefault.jpg" />
+      <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" />
+      <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" />
+  </div>
+</div>
+
+<style>
+.poster-box{
+    width:100%;
+    height:170px;
+    overflow:hidden;
+    position:relative;
+    margin:20px auto;
+}
+
+.poster-track{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    height:100%;
+    transition:transform 0.45s ease;
+}
+
+.poster-track img{
+    width:80vw;
+    max-width:260px;
+    border-radius:16px;
+    object-fit:cover;
+    opacity:0.45;
+    transition:0.4s;
+    flex-shrink:0;
+    cursor:pointer;
+}
+
+.poster-track img.active{
+    opacity:1;
+    transform:scale(1.05);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("posterTrack");
+    if (!track) return;
+
+    const posters = Array.from(track.querySelectorAll("img"));
+    if (posters.length === 0) return;
+
+    let index = 0;
+    const gap = 14;
+
+    function updateSlider() {
+        posters.forEach(p => p.classList.remove("active"));
+        posters[index].classList.add("active");
+
+        const imgWidth = posters[index].offsetWidth;
+        const screenCenter = window.innerWidth / 2;
+        const targetCenter = imgWidth / 2;
+
+        const activePos = (imgWidth + gap) * index + targetCenter;
+        const translateX = activePos - screenCenter;
+
+        track.style.transform = `translateX(-${translateX}px)`;
+    }
+
+    let sliderInterval = setInterval(() => {
+        index = (index + 1) % posters.length;
+        updateSlider();
+    }, 2500);
+
+    // pause on hover
+    track.addEventListener("mouseenter", () => clearInterval(sliderInterval));
+    track.addEventListener("mouseleave", () => {
+        sliderInterval = setInterval(() => {
+            index = (index + 1) % posters.length;
+            updateSlider();
+        }, 2500);
+    });
+
+    // window resize
+    window.addEventListener("resize", updateSlider);
+
+    // initial update
+    updateSlider();
+});
+</script>
+
+
+ 
+<!-- Main Gallery -->
+<section class="gallery" id="gallery">
+
+
+<div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams"><a href="go:555"><img data-src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/9Night-at-the-Museum-2006.jpg" alt="Night at the Museum 2006" class="lazy"></a><h3 class="auto-title"><span>Night at the Museum 2006</span></h3></div>
+
+    <div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams">
+      <a href="https://punjabimovielists.blogspot.com/?id=1xZ32m254SM9gQAqFT68f9HngX0Prm8hq"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinCwNFeSK1rO1z4egPpoG5AkvZFeXLVEzWaEE4x_KXLm8r-Ax9DNlOjIYY1SH74r7Ocsk9ERgZQuRE-Ih7oZm2qpFoIChjbeLNqPM065tbyji5w6-Bj0NB9dwMkKq_xD3qIOW399GhAnfiOuR_7IEt53ryUaK8IojcXaMZOhqm6Ahy-wk3zRxGVWFPaRPN/s1600/Night%20at%20the%20Museum%202006.jpg" alt="Night at the Museum 2006" class="lazy"></a>
+      <b>Night at the Museum 2006</b>
+    </div>
+  
+  
+<div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams"><a href="go:nn3"><img data-src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/9Night-at-the-Museum-2006.jpg" alt="Night at the Museum 2006" class="lazy"></a><h3 class="auto-title"><span>Night at the Museum 2006</span></h3></div>
+  
+  <div class="card" data-title="Coolie 2025 south hindi Dubbed movie" data-category="South Indian Hindi" data-description="Rajinikanth, Nagarjuna Akkineni">
+    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
+    <h3 class="auto-title">
+    <span>Coolie 2025 south hindi Dubbed movie</span>
+</h3>
+  </div>
+  <div class="card" data-title="Batman Begins" data-category="Action" data-description="Christian Bale, Katie Holmes">
+    <a href="go:mm2"><img data-src="https://picsum.photos/id/1012/400/600" alt="Batman Begins" class="lazy"></a>
+    <h3 class="auto-title">
+    <span>Coolie 2025 south hindi Dubbed movie</span>
+</h3>
+  </div>
+  <div class="card" data-title="The Flash" data-category="Action" data-description="Actor info">
+    <a href="go:mm3"><img data-src="https://picsum.photos/id/1014/400/600" alt="The Flash" class="lazy"></a>
+    <h3 class="auto-title">
+    <span>The Flash</span>
+</h3>
+  </div>
+  <div class="card" data-title="Coolie 2025" data-category="South Indian Hindi" data-description="Rajinikanth, Nagarjuna Akkineni">
+    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
+    <h3>Coolie 2025</h3>
+  </div>
+  <div class="card" data-title="Batman Begins" data-category="Action" data-description="Christian Bale, Katie Holmes">
+    <a href="go:mm2"><img data-src="https://picsum.photos/id/1012/400/600" alt="Batman Begins" class="lazy"></a>
+    <h3>Batman Begins</h3>
+  </div>
+  <div class="card" data-title="The Flash" data-category="Action" data-description="Actor info">
+    <a href="go:mm3"><img data-src="https://picsum.photos/id/1014/400/600" alt="The Flash" class="lazy"></a>
+    <h3>The Flash</h3>
+  </div>
+  <div class="card" data-title="Coolie 2025" data-category="South Indian Hindi" data-description="Rajinikanth, Nagarjuna Akkineni">
+    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
+    <h3>Coolie 2025</h3>
+  </div>
+  <div class="card" data-title="Batman Begins" data-category="Action" data-description="Christian Bale, Katie Holmes">
+    <a href="go:mm2"><img data-src="https://picsum.photos/id/1012/400/600" alt="Batman Begins" class="lazy"></a>
+    <h3>Batman Begins</h3>
+  </div>
+  <div class="card" data-title="The Flash" data-category="Action" data-description="Actor info">
+    <a href="go:mm3"><img data-src="https://picsum.photos/id/1014/400/600" alt="The Flash" class="lazy"></a>
+    <h3>The Flash</h3>
+  </div>
+  <div class="card" data-title="Coolie 2025" data-category="South Indian Hindi" data-description="Rajinikanth, Nagarjuna Akkineni">
+    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
+    <h3>Coolie 2025</h3>
+  </div>
+  <div class="card" data-title="Batman Begins" data-category="Action" data-description="Christian Bale, Katie Holmes">
+    <a href="go:mm2"><img data-src="https://picsum.photos/id/1012/400/600" alt="Batman Begins" class="lazy"></a>
+    <h3>Batman Begins</h3>
+  </div>
+  <div class="card" data-title="The Flash" data-category="Action" data-description="Actor info">
+    <a href="go:mm3"><img data-src="https://picsum.photos/id/1014/400/600" alt="The Flash" class="lazy"></a>
+    <h3>The Flash</h3>
+  </div>
+</section>
+
+<button id="scrollTop">↑</button>
+
+<script src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/script1.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/script2.js" type="text/javascript"></script>
+<script>
+const dbName = "MovieAppDB";
+let db;
+const request = indexedDB.open(dbName,1);
+request.onupgradeneeded = e => {db=e.target.result; db.createObjectStore("images");};
+request.onsuccess = e => {db=e.target.result; cacheImages();};
+
+function cacheImages(){
+  const imgs=document.querySelectorAll(".lazy");
+  imgs.forEach(img=>{
+    const tx=db.transaction("images","readonly");
+    const store=tx.objectStore("images");
+    const get=store.get(img.dataset.src);
+    get.onsuccess=()=>{
+      if(get.result){img.src=get.result;} 
+      else {
+        const image=new Image();
+        image.src=img.dataset.src;
+        image.onload=()=>{
+          const tx2=db.transaction("images","readwrite");
+          const store2=tx2.objectStore("images");
+          store2.put(image.src,img.dataset.src);
+          img.src=image.src;
+        };
+      }
+    };
+  });
+}
+</script>
+<script>
+const shareBtn = document.getElementById('shareBtn');
+const shareURL = 'https://www.vdosky.in/';
+const shareText = 'Check out vdosky.in for amazing videos!';
+
+shareBtn.addEventListener('click', async () => {
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'vdosky.in',
+                text: shareText,
+                url: shareURL
+            });
+            console.log('Shared successfully');
+        } catch (err) {
+            console.error('Error sharing:', err);
+        }
+    } else {
+        // Fallback: show alert or copy link
+        prompt('Copy this link to share:', shareURL);
+    }
+});
+</script>
+</body>
+</html>

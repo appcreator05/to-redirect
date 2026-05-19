@@ -9,21 +9,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/head2.css"/>
 
 <style>
-/* --- স্ক্রিনশটের মতো কাস্টম ডিজাইন --- */
-
-/* ১. সার্চ বক্স ডিজাইন (গোলাকার ও বর্ডার কালার সহ) */
+/* --- কাস্টম ডিজাইন --- */
 .searchBox {
     display: flex;
     align-items: center;
     background: #fff;
-    border: 2px solid #ff4a75; /* স্ক্রিনশটের মতো পিঙ্ক/লালচে বর্ডার */
-    border-radius: 30px;       /* একদম ওভাল বা গোলাকার শেপ */
+    border: 2px solid #ff4a75; 
+    border-radius: 30px;      
     padding: 6px 15px;
     margin: 10px auto;
     width: 100%;
     max-width: 500px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-	height: 45px;
+    height: 45px;
 }
 
 .searchBox input {
@@ -35,25 +33,24 @@
     background: transparent;
 }
 
-/* ২. মেইন গ্যালারি গ্রিড লেআউট (স্ক্রিনশটের মতো পাশাপাশি ২টি করে কার্ড) */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* মোবাইলে পাশাপাশি ২টি করে পারফেক্ট কলাম */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 12px;
     padding: 12px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* ৩. মুভি কার্ডের সুন্দর ডিজাইন */
 .card {
     background: #fff;
-    border-radius: 16px; /* কার্ডের কোণাগুলো গোল করার জন্য */
+    border-radius: 16px; 
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -63,26 +60,25 @@
 .card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 3; /* মুভি পোস্টারের স্ট্যান্ডার্ড রেশিও */
+    aspect-ratio: 2 / 3; 
     object-fit: cover;
     border-radius: 16px 16px 0 0;
 }
 
-/* কার্ডের নিচের টেক্সট এরিয়া */
 .card h3, .card b, .card .auto-title {
     font-size: 14px;
     color: #222;
     text-align: center;
-    padding: 10px 5px;
+    padding: 3px 5px;
     margin: 0;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* নাম বড় হলে ডট ডট (...) দেখাবে */
+    text-overflow: ellipsis; 
     background: #fff;
 }
 
-/* --- ল্যান্ডস্কেপ প্লেয়ার সিএসএস --- */
+/* --- ল্যান্ডস্কেপ প্লেয়ার সিএসএস --- */
 #videoModal {
     position: fixed;
     inset: 0;
@@ -148,6 +144,36 @@
     right: 10px;
     bottom: 16px;
 }
+.auto-title span{margin-top: -1px;}
+
+.poster-box{
+    width:100%;
+    height:170px;
+    overflow:hidden;
+    position:relative;
+    margin:20px auto;
+}
+.poster-track{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    height:100%;
+    transition:transform 0.45s ease;
+}
+.poster-track img{
+    width:80vw;
+    max-width:260px;
+    border-radius:16px;
+    object-fit:cover;
+    opacity:0.45;
+    transition:0.4s;
+    flex-shrink:0;
+    cursor:pointer;
+}
+.poster-track img.active{
+    opacity:1;
+    transform:scale(1.05);
+}
 </style>
 </head>
 <body>
@@ -155,7 +181,7 @@
 <header>
   <div class="left">
     <span class="menu" id="menuBtn">☰</span>
-    <a href="/" style="text-decoration:none"><h1>Movie App</h1></a>
+    <a href="https://appcreator05.github.io/to-redirect/" style="text-decoration:none"><h1>Movie App</h1></a>
   </div>
   <div class="right">
     <kajal class="share-btn" id="shareBtn"><i class="fa fa-share-alt" style="font-size:22px;color:red"></i></kajal>
@@ -218,42 +244,11 @@
         <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
         <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
         <img src="https://i.ytimg.com/vi/1kVK0MZlbI4/maxresdefault.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
-        <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" />
-        <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" />
+        <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
+        <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
     </div>
   </div>
 </section>
-
-<style>
-.poster-box{
-    width:100%;
-    height:170px;
-    overflow:hidden;
-    position:relative;
-    margin:20px auto;
-}
-.poster-track{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    height:100%;
-    transition:transform 0.45s ease;
-}
-.poster-track img{
-    width:80vw;
-    max-width:260px;
-    border-radius:16px;
-    object-fit:cover;
-    opacity:0.45;
-    transition:0.4s;
-    flex-shrink:0;
-    cursor:pointer;
-}
-.poster-track img.active{
-    opacity:1;
-    transform:scale(1.05);
-}
-</style>
 
 <div id="videoModal">
   <div id="videoContainer">
@@ -268,46 +263,114 @@
  
 <section class="gallery" id="gallery">
 
+<div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams">
+    <img data-src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/9Night-at-the-Museum-2006.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" alt="Night at the Museum 2006" class="lazy">
+    <h3 class="auto-title"><span>Night at the Museum 2006</span></h3>
+</div>
+
   <div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams">
-    <a href="go:555"><img data-src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/9Night-at-the-Museum-2006.jpg" alt="Night at the Museum 2006" class="lazy"></a>
+    <a href="go:555"><img data-src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/9Night-at-the-Museum-2006.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" alt="Night at the Museum 2006" class="lazy"></a>
     <h3 class="auto-title"><span>Night at the Museum 2006</span></h3>
   </div>
 
   <div class="card" data-title="Night at the Museum 2006" data-category="Hollywood Hindi Dubbed" data-description="ben stiller carla gugino dick van dyke mickey rooney bill cobbs robin williams">
-    <a href="https://punjabimovielists.blogspot.com/?id=1xZ32m254SM9gQAqFT68f9HngX0Prm8hq"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinCwNFeSK1rO1z4egPpoG5AkvZFeXLVEzWaEE4x_KXLm8r-Ax9DNlOjIYY1SH74r7Ocsk9ERgZQuRE-Ih7oZm2qpFoIChjbeLNqPM065tbyji5w6-Bj0NB9dwMkKq_xD3qIOW399GhAnfiOuR_7IEt53ryUaK8IojcXaMZOhqm6Ahy-wk3zRxGVWFPaRPN/s1600/Night%20at%20the%20Museum%202006.jpg" alt="Night at the Museum 2006" class="lazy"></a>
+    <a href="https://punjabimovielists.blogspot.com/?id=1xZ32m254SM9gQAqFT68f9HngX0Prm8hq"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinCwNFeSK1rO1z4egPpoG5AkvZFeXLVEzWaEE4x_KXLm8r-Ax9DNlOjIYY1SH74r7Ocsk9ERgZQuRE-Ih7oZm2qpFoIChjbeLNqPM065tbyji5w6-Bj0NB9dwMkKq_xD3qIOW399GhAnfiOuR_7IEt53ryUaK8IojcXaMZOhqm6Ahy-wk3zRxGVWFPaRPN/s1600/Night%20at%20the%20Museum%202006.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" alt="Night at the Museum 2006" class="lazy"></a>
     <b>Night at the Museum 2006</b>
   </div>
   
-  <div class="card" data-title="Coolie 2025 south hindi Dubbed movie" data-category="laltu South Indian Hindi" data-description="laltu Rajinikanth, Nagarjuna Akkineni">
-    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
+  <div class="card" data-title="Coolie 2025 south hindi Dubbed movie" data-category="South Indian Hindi" data-description="laltu Rajinikanth, Nagarjuna Akkineni">
+    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" alt="Coolie 2025" class="lazy"></a>
     <h3 class="auto-title"><span>Coolie 2025 south hindi movie</span></h3>
-  </div>
-
-  <div class="card" data-title="Batman Begins" data-category="Action" data-description="Christian Bale, Katie Holmes">
-    <a href="go:mm2"><img data-src="https://picsum.photos/id/1012/400/600" alt="Batman Begins" class="lazy"></a>
-    <h3>Batman Begins</h3>
-  </div>
-
-  <div class="card" data-title="The Flash" data-category="Action" data-description="Actor info">
-    <a href="go:mm3"><img data-src="https://picsum.photos/id/1014/400/600" alt="The Flash" class="lazy"></a>
-    <h3>The Flash</h3>
-  </div>
-
-  <div class="card" data-title="Coolie 2025" data-category="South Indian Hindi" data-description="Rajinikanth, Nagarjuna Akkineni">
-    <a href="go:mm1"><img data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAeCbbb-DavjmMmPa-60VwffTIcNGNackca9082l5YuAdXolxK-aNz7t65N6SmBhpPs4gpZrZyrCZh89Jz_iuL9uR6jOaYKUDHhLAaPOGvfhaJbCG2vFTr0pIX0UvYiX2k7RG8SP1EdWjKnpJWo4-rg2B_UaOOREoqix8yKpAdW9ipHe-eMNQyPeHBMAY/s1600/Coolie.jpg" alt="Coolie 2025" class="lazy"></a>
-    <h3>Coolie 2025</h3>
   </div>
 
 </section>
 
 <button id="scrollTop">↑</button>
 
-<script src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/script1.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/script2.js" type="text/javascript"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    // --- স্লাইডার স্ক্রিপ্ট ---
+    // --- গ্লোবাল ভেরিয়েবলস ---
+    const modal = document.getElementById("videoModal");
+    const player = document.getElementById("popupPlayer");
+    const closeModal = document.getElementById("closeModal");
+    const workerBaseUrl = "https://debasis.installapkapps.workers.dev/?id=";
+    const continueSection = document.getElementById("continueSection");
+    const searchInput = document.getElementById("searchBox");
+
+    // --- ভিডিও প্লে করার কমন ফাংশন ---
+    function playVideo(videoId) {
+        if (!videoId) return;
+        player.src = workerBaseUrl + videoId; 
+        modal.style.display = "block"; 
+        document.body.style.overflow = "hidden"; 
+        player.play().catch(err => console.log("Play error:", err));
+        screen.orientation?.lock("landscape").catch(()=>{});
+    }
+
+    // --- ১. স্লাইডার বা ব্যানার পোস্টার ক্লিক লজিক ---
+    document.querySelectorAll("#posterTrack img").forEach(poster => {
+        poster.addEventListener("click", () => {
+            const videoId = poster.getAttribute("data-id");
+            playVideo(videoId);
+        });
+    });
+
+    // --- ২. মেইন গ্যালারি এবং কন্টিনিউ ওয়াচিং কার্ড ক্লিক লজিক ---
+    // ইমেজে বা কার্ডে যেখানেই ক্লিক হোক, সঠিকভাবে আইডি ডিটেক্ট করবে
+    document.addEventListener("click", (e) => {
+        const card = e.target.closest(".card, .watch-card");
+        if (!card) return;
+
+        // যদি <a> ট্যাগে ক্লিক হয় তবে ব্রাউজারের ডিফল্ট রিডাইরেক্ট বন্ধ করবে
+        if (e.target.closest("a")) {
+            e.preventDefault();
+        }
+
+        const img = card.querySelector("img");
+        if (img) {
+            // প্রথমে ইমেজের data-id চেক করবে, না থাকলে লিঙ্কের আইডি খোঁজার চেষ্টা করবে
+            let videoId = img.getAttribute("data-id");
+            
+            if (!videoId) {
+                const link = card.querySelector("a")?.getAttribute("href") || "";
+                if (link.includes("id=")) {
+                    videoId = link.split("id=")[1];
+                } else if (link.startsWith("go:")) {
+                    videoId = link.split("go:")[1];
+                }
+            }
+
+            if (videoId) {
+                playVideo(videoId);
+
+                // কন্টিনিউ ওয়াচিং ডাটা সেভ প্রসেস
+                const movieImage = img.dataset.src || img.src;
+                const movie = { 
+                    title: card.dataset.title || card.querySelector("h3, h4, b")?.innerText, 
+                    description: card.dataset.description || "", 
+                    link: card.querySelector("a")?.getAttribute("href") || "#", 
+                    img: movieImage
+                };
+                addToContinueWatch(movie);
+            }
+        }
+    });
+
+    // --- ক্লোজ প্লেয়ার বাটন লজিক ---
+    if(closeModal) {
+        closeModal.addEventListener("click", () => {
+            if (document.fullscreenElement) document.exitFullscreen();
+            player.pause();
+            player.src = ""; 
+            modal.style.display = "none";
+            document.body.style.overflow = ""; 
+            screen.orientation?.unlock();
+        });
+    }
+
+    // --- স্লাইডার অটো স্ক্রোল স্ক্রিপ্ট ---
     const track = document.getElementById("posterTrack");
     if (track) {
         const posters = Array.from(track.querySelectorAll("img"));
@@ -324,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const translateX = activePos - screenCenter;
                 track.style.transform = `translateX(-${translateX}px)`;
             }
-            let sliderInterval = setInterval(() => {
+            setInterval(() => {
                 index = (index + 1) % posters.length;
                 updateSlider();
             }, 2500);
@@ -333,49 +396,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- মেইন ফুলস্ক্রিন ভিডিও লজিক ---
-    const modal = document.getElementById("videoModal");
-    const container = document.getElementById("videoContainer");
-    const player = document.getElementById("popupPlayer");
-    const closeModal = document.getElementById("closeModal");
-    const fullBtn1 = document.getElementById("customFullscreenBtn");
-    const fullBtn2 = document.getElementById("customFullscreenBtn2");
-    const workerBaseUrl = "https://debasis.installapkapps.workers.dev/?id=";
-
-    document.querySelectorAll("#posterTrack img").forEach(poster => {
-        poster.addEventListener("click", () => {
-            const videoId = poster.getAttribute("data-id"); 
-            if (videoId) {
-                player.src = workerBaseUrl + videoId; 
-                modal.style.display = "block"; 
-                document.body.style.overflow = "hidden"; 
-                player.play().catch(err => console.log(err));
-                screen.orientation?.lock("landscape").catch(()=>{});
-            }
-        });
-    });
-
-    if(closeModal) {
-        closeModal.addEventListener("click", () => {
-            if (document.fullscreenElement) document.exitFullscreen();
-            player.pause();
-            player.src = ""; 
-            modal.style.display = "none";
-            document.body.style.overflow = ""; 
-            screen.orientation?.unlock();
-        });
-    }
-
-    // --- ইনস্ট্যান্ট লাইভ সার্চ ফিল্টারিং লজিক (১০০% ফিক্সড) ---
-    const searchInput = document.getElementById("searchBox");
-    const continueSection = document.getElementById("continueSection"); // স্লাইডার সেকশন
-
+    // --- লাইভ সার্চ লজিক ---
     if (searchInput) {
         searchInput.addEventListener("input", (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             const currentCards = document.querySelectorAll(".gallery .card");
 
-            // ইউজার টাইপ করা শুরু করলেই স্লাইডার/কন্টিনিউ ওয়াচিং হাইড হয়ে যাবে
             if (searchTerm.length > 0) {
                 if(continueSection) continueSection.style.display = "none";
             } else {
@@ -388,21 +414,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 const description = card.getAttribute("data-description") ? card.getAttribute("data-description").toLowerCase() : "";
                 const innerText = card.innerText ? card.innerText.toLowerCase() : "";
 
-                if (
-                    title.includes(searchTerm) || 
-                    category.includes(searchTerm) || 
-                    description.includes(searchTerm) ||
-                    innerText.includes(searchTerm)
-                ) {
-                    card.style.display = "flex"; // কি-ওয়ার্ড মিললে কার্ড গ্রিডে দেখাবে
+                if (title.includes(searchTerm) || category.includes(searchTerm) || description.includes(searchTerm) || innerText.includes(searchTerm)) {
+                    card.style.display = "flex";
                 } else {
-                    card.style.display = "none"; // না মিললে ইনস্ট্যান্ট হাইড
+                    card.style.display = "none";
                 }
             });
         });
     }
     
-    // ক্রশ (×) বাটনে চাপ দিলে সব রিসেট হবে
     const searchClose = document.getElementById("searchClose");
     if (searchClose) {
         searchClose.addEventListener("click", () => {
@@ -411,11 +431,54 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".gallery .card").forEach(card => card.style.display = "flex");
         });
     }
+
+    // --- Continue Watching সেভ অ্যান্ড রেন্ডার ফাংশন ---
+    const continueWatchContainer = document.getElementById("continueWatch");
+    let continueWatchList = JSON.parse(localStorage.getItem("continueWatch")) || [];
+
+    function renderContinueWatch(){
+        if(!continueWatchContainer) return;
+        continueWatchContainer.innerHTML = "";
+        continueWatchList.forEach(item=>{
+            const card = document.createElement("div");
+            card.classList.add("watch-card");
+            card.dataset.title = item.title;
+            card.dataset.description = item.description;
+            card.innerHTML = `<a href="${item.link}"><img src="${item.img}" alt="${item.title}"></a><h4>${item.title}</h4>`;
+            continueWatchContainer.appendChild(card);
+        });
+    }
+
+    function addToContinueWatch(movie) {
+        continueWatchList = continueWatchList.filter(c => c.title !== movie.title);
+        continueWatchList.unshift(movie);
+        if(continueWatchList.length > 10) continueWatchList.pop();
+        localStorage.setItem("continueWatch", JSON.stringify(continueWatchList));
+        renderContinueWatch();
+    }
+
+    renderContinueWatch();
+
+    // --- ক্যাটাগরি ফিল্টার ---
+    document.querySelectorAll("#categoryList li").forEach(cat=>{
+        cat.addEventListener("click",()=>{
+            const category=cat.textContent.trim();
+            document.querySelectorAll(".gallery .card").forEach(card=>{
+                const matchesCategory=(category==="All" || card.dataset.category===category);
+                const matchesSearch=(searchInput.value==="" || card.dataset.description.toLowerCase().includes(searchInput.value.toLowerCase()) || card.dataset.title.toLowerCase().includes(searchInput.value.toLowerCase()));
+                card.style.display=(matchesCategory && matchesSearch)?"flex":"none";
+            });
+            const sideMenu=document.getElementById("sideMenu");
+            const overlay=document.getElementById("overlay");
+            sideMenu?.classList.remove("active");
+            overlay?.classList.remove("active");
+        });
+    });
 });
 </script>
 
 <script>
-// --- IndexedDB ইমেজ ক্যাশিং লজিক ---
+// --- IndexedDB ইমেজ ক্যাশ ---
 const dbName = "MovieAppDB";
 let db;
 const request = indexedDB.open(dbName,1);
@@ -444,7 +507,7 @@ function cacheImages(){
   });
 }
 
-// --- শেয়ার বাটন লজিক ---
+// --- বাকি ইউটিলিটি ইভেন্টস ---
 const shareBtn = document.getElementById('shareBtn');
 if(shareBtn) {
     shareBtn.addEventListener('click', async () => {
@@ -459,6 +522,35 @@ if(shareBtn) {
         } else {
             prompt('Copy this link to share:', 'https://www.vdosky.in/');
         }
+    });
+}
+
+const scrollBtn=document.getElementById("scrollTop");
+window.addEventListener("scroll",()=>scrollBtn.style.display=window.scrollY>200?"flex":"none");
+scrollBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+const menuBtn=document.getElementById("menuBtn");
+const sideMenu=document.getElementById("sideMenu");
+const overlay=document.getElementById("overlay");
+if(menuBtn) menuBtn.onclick=()=>{sideMenu.classList.add("active");overlay.classList.add("active");};
+if(overlay) overlay.onclick=()=>{sideMenu.classList.remove("active");overlay.classList.remove("active");};
+
+const darkToggle=document.getElementById("darkToggle");
+if(darkToggle) {
+    darkToggle.addEventListener("click",()=>{
+      document.body.classList.toggle("dark");
+      darkToggle.textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+      localStorage.setItem("darkMode",document.body.classList.contains("dark")?"true":"false");
+    });
+    if(localStorage.getItem("darkMode")==="true"){document.body.classList.add("dark");darkToggle.textContent="☀️";}
+}
+
+const searchIcon=document.getElementById("searchIcon");
+const searchBoxContainer=document.getElementById("searchBoxContainer");
+if(searchIcon) {
+    searchIcon.addEventListener("click",()=>{
+        searchBoxContainer.classList.toggle("active"); 
+        if(searchBoxContainer.classList.contains("active")) document.getElementById("searchBox").focus();
     });
 }
 </script>

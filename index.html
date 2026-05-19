@@ -8,6 +8,74 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mydvlp22-hash/foder@main/head2.css"/>
 
+<!-- নতুন ল্যান্ডস্কেপ প্লেয়ারের ফিক্সড সিএসএস (অরিজিনাল সিএসএস এর সাথে যুক্ত করা হলো) -->
+<style>
+#videoModal {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 999999;
+    display: none;
+}
+
+#videoContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+}
+
+.videoBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vh;  
+    height: 100vw; 
+    transform: translate(-50%, -50%) rotate(90deg); 
+    background: #000;
+    overflow: hidden;
+}
+
+.videoBox video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+.player-btn {
+    position: fixed;
+    z-index: 1000002;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+}
+
+.close-modal {
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.fullscreen-btn {
+    left: 10px;
+    bottom: 10px;
+}
+
+.fullscreen-btn-2 {
+    right: 10px;
+    bottom: 16px;
+}
+</style>
 </head>
 <body>
 
@@ -49,7 +117,7 @@
     <li>Korean Hindi Dubbed</li>
     <li>Live TV</li>
     <li>Marathi Movie</li>
-	<li>Web Series</li>
+    <li>Web Series</li>
     <li class="dropdown">
   <span class="dropBtn">🎵 Music Section</span>
 
@@ -79,9 +147,10 @@
   <div class="continue-watch" id="continueWatch"></div>
 <div class="poster-box">
   <div class="poster-track" id="posterTrack">
-      <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" />
-      <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" />
-      <img src="https://i.ytimg.com/vi/1kVK0MZlbI4/maxresdefault.jpg" />
+      <!-- এখানে ডাটা-আইডি (data-id) সেট করা হয়েছে শর্টকোড ব্যবহারের জন্য -->
+      <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
+      <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
+      <img src="https://i.ytimg.com/vi/1kVK0MZlbI4/maxresdefault.jpg" data-id="1dujueh_a7Hh6C3-sZ7Ai7cRJzfsuwmmI" />
       <img src="https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg" />
       <img src="https://i.ytimg.com/vi/Nu1hMnBeXYQ/maxresdefault.jpg" />
   </div>
@@ -165,11 +234,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // initial update
     updateSlider();
+
+    // --- মেইন ফুলস্ক্রিন ল্যান্ডস্কেপ ও ডাইনামিক শর্ট আইডি প্লেয়ার লজিক ---
+    const modal = document.getElementById("videoModal");
+    const container = document.getElementById("videoContainer");
+    const player = document.getElementById("popupPlayer");
+    const closeModal = document.getElementById("closeModal");
+    const fullBtn1 = document.getElementById("customFullscreenBtn");
+    const fullBtn2 = document.getElementById("customFullscreenBtn2");
+
+    // ক্লাউডফ্লেয়ার ওয়ার্কার্সের কমন বেস লিঙ্ক
+    const workerBaseUrl = "https://debasis.installapkapps.workers.dev/?id=";
+
+    // পোস্টার ক্লিকে প্লেয়ার ওপেন এবং ডাইনামিক ইউআরএল জেনারেট লজিক
+    posters.forEach(poster => {
+        poster.addEventListener("click", () => {
+            const videoId = poster.getAttribute("data-id"); // শুধু আইডি রিড করবে
+            if (videoId) {
+                player.src = workerBaseUrl + videoId; 
+                modal.style.display = "block"; 
+                document.body.style.overflow = "hidden"; 
+                player.play().catch(err => console.log("Autoplay handle:", err));
+                screen.orientation?.lock("landscape").catch(()=>{});
+            }
+        });
+    });
+
+    // ফুলস্ক্রিন টগল ফাংশন (কন্টেইনার ফুলস্ক্রিন হবে)
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen().then(() => {
+                    screen.orientation?.lock("landscape").catch(()=>{});
+                });
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    fullBtn1.addEventListener("click", toggleFullscreen);
+    fullBtn2.addEventListener("click", toggleFullscreen);
+
+    // প্লেয়ার বন্ধ করার লজিক
+    closeModal.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+        player.pause();
+        player.src = ""; 
+        modal.style.display = "none";
+        document.body.style.overflow = ""; 
+        screen.orientation?.unlock();
+    });
 });
 </script>
 
-
- 
+<!-- নতুন ভিডিও পপআপ স্ট্রাকচার (আপনার ২য় কোডের আইডিয়া অনুযায়ী সম্পূর্ণ সুরক্ষিত স্ট্রাকচার) -->
+<div id="videoModal">
+  <div id="videoContainer">
+    <div class="videoBox">
+      <video id="popupPlayer" controls autoplay playsinline controlsList="nofullscreen"></video>
+    </div>
+    <button class="player-btn fullscreen-btn" id="customFullscreenBtn">⛶</button>
+    <button class="player-btn fullscreen-btn-2" id="customFullscreenBtn2">⛶</button>
+    <button class="player-btn close-modal" id="closeModal">✕</button>
+  </div>
+</div>
+ 
 <!-- Main Gallery -->
 <section class="gallery" id="gallery">
 
